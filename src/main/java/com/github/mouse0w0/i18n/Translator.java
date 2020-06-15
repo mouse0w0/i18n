@@ -40,7 +40,7 @@ public final class Translator {
         return translations.keySet();
     }
 
-    public ResourceBundle toResourceBundle() {
+    public ResourceBundle getResourceBundle() {
         return resourceBundle;
     }
 

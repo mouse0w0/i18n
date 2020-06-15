@@ -14,8 +14,8 @@ public final class I18n {
         I18n.translator = translator;
     }
 
-    public static ResourceBundle toResourceBundle() {
-        return translator.toResourceBundle();
+    public static ResourceBundle getResourceBundle() {
+        return translator.getResourceBundle();
     }
 
     public static String translate(String translationKey) {
