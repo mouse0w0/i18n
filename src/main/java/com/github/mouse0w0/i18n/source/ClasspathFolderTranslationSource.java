@@ -44,7 +44,7 @@ public class ClasspathFolderTranslationSource implements TranslationSource {
 
     @Override
     public void load(Locale locale, Map<String, String> translations) throws IOException {
-        URL translationFolderURL = classLoader.getResource(path + "/" + locale.toLanguageTag());
+        URL translationFolderURL = classLoader.getResource(path + "/" + Utils.toString(locale));
         if (translationFolderURL == null) return;
 
         Path translationFolder;

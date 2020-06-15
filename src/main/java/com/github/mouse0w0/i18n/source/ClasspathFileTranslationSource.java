@@ -45,8 +45,9 @@ public class ClasspathFileTranslationSource implements TranslationSource {
 
     @Override
     public void load(Locale locale, Map<String, String> translations) throws IOException {
-        URL resource = classLoader.getResource(path + "/" + prefix + locale.toLanguageTag() + suffix);
+        URL resource = classLoader.getResource(path + "/" + prefix + Utils.toString(locale) + suffix);
         if (resource == null) return;
+
         try (Reader reader = new InputStreamReader(resource.openStream(), charset)) {
             Properties properties = new Properties();
             properties.load(reader);

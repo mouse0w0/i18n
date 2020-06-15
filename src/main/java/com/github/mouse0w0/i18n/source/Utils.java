@@ -1,5 +1,7 @@
 package com.github.mouse0w0.i18n.source;
 
+import java.util.Locale;
+
 class Utils {
 
     public static ClassLoader getClassLoader(Class<?> clazz) {
@@ -12,5 +14,9 @@ class Utils {
         } catch (ClassNotFoundException e) {
             return null;
         }
+    }
+
+    public static String toString(Locale locale) {
+        return locale.toString().toLowerCase();
     }
 }

@@ -13,6 +13,10 @@ public final class Translator {
 
     private final ResourceBundle resourceBundle;
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     private Translator(Locale locale, List<TranslationSource> sources) {
         if (locale == null) throw new NullPointerException("locale");
         this.locale = locale;

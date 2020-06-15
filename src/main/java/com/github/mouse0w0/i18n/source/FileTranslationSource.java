@@ -39,10 +39,8 @@ public class FileTranslationSource implements TranslationSource {
 
     @Override
     public void load(Locale locale, Map<String, String> translations) throws IOException {
-        Path translationFile = path.resolve(prefix + locale.toLanguageTag() + suffix);
-        if (!Files.exists(translationFile)) {
-            return;
-        }
+        Path translationFile = path.resolve(prefix + Utils.toString(locale) + suffix);
+        if (!Files.exists(translationFile)) return;
 
         try (Reader reader = new InputStreamReader(Files.newInputStream(translationFile), charset)) {
             Properties properties = new Properties();

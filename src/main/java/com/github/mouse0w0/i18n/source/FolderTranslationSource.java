@@ -34,10 +34,8 @@ public class FolderTranslationSource implements TranslationSource {
 
     @Override
     public void load(Locale locale, Map<String, String> translations) throws IOException {
-        Path translationFolder = path.resolve(locale.toLanguageTag());
-        if (!Files.isDirectory(translationFolder)) {
-            return;
-        }
+        Path translationFolder = path.resolve(Utils.toString(locale));
+        if (!Files.isDirectory(translationFolder)) return;
 
         Iterator<Path> iterator = Files.walk(translationFolder).iterator();
         while (iterator.hasNext()) {
