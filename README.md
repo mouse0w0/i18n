@@ -19,7 +19,7 @@ Step 2. Add the dependency
 	<dependency>
 	    <groupId>com.github.Mouse0w0</groupId>
 	    <artifactId>i18n</artifactId>
-	    <version>1.0.0</version>
+	    <version>1.0.1</version>
 	</dependency>
 ```
 ### Gradle
@@ -37,6 +37,6 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 ```xml
 	dependencies {
-	        implementation 'com.github.Mouse0w0:i18n:1.0.0'
+	        implementation 'com.github.Mouse0w0:i18n:1.0.1'
 	}
 ```
