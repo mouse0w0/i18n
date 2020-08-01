@@ -17,7 +17,7 @@ Step 1. Add the JitPack repository to your build file
 Step 2. Add the dependency
 ```xml
 	<dependency>
-	    <groupId>com.github.Mouse0w0</groupId>
+	    <groupId>com.github.mouse0w0</groupId>
 	    <artifactId>i18n</artifactId>
 	    <version>1.0.1</version>
 	</dependency>
@@ -37,6 +37,6 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 ```xml
 	dependencies {
-	        implementation 'com.github.Mouse0w0:i18n:1.0.1'
+	        implementation 'com.github.mouse0w0:i18n:1.0.1'
 	}
 ```
