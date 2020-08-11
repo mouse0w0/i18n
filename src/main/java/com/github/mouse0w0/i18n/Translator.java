@@ -48,6 +48,10 @@ public final class Translator {
         return translations.getOrDefault(translationKey, translationKey);
     }
 
+    public String translate(String translationKey, String defaultValue) {
+        return translations.getOrDefault(translationKey, defaultValue);
+    }
+
     public static final class Builder {
         private Locale locale;
 
