@@ -26,6 +26,10 @@ public final class I18n {
         return translator.translate(key, defaultValue);
     }
 
+    public static String format(String key, Object... args) {
+        return String.format(translate(key), args);
+    }
+
     private I18n() {
         throw new AssertionError();
     }
