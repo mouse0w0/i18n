@@ -18,12 +18,12 @@ public final class I18n {
         return translator.getResourceBundle();
     }
 
-    public static String translate(String translationKey) {
-        return translator.translate(translationKey);
+    public static String translate(String key) {
+        return translator.translate(key);
     }
 
-    public static String translate(String translationKey, String defaultValue) {
-        return translator.translate(translationKey, defaultValue);
+    public static String translate(String key, String defaultValue) {
+        return translator.translate(key, defaultValue);
     }
 
     private I18n() {

@@ -44,12 +44,12 @@ public final class Translator {
         return resourceBundle;
     }
 
-    public String translate(String translationKey) {
-        return translations.getOrDefault(translationKey, translationKey);
+    public String translate(String key) {
+        return translations.getOrDefault(key, key);
     }
 
-    public String translate(String translationKey, String defaultValue) {
-        return translations.getOrDefault(translationKey, defaultValue);
+    public String translate(String key, String defaultValue) {
+        return translations.getOrDefault(key, defaultValue);
     }
 
     public static final class Builder {
