@@ -5,7 +5,7 @@ import com.github.mouse0w0.i18n.source.TranslationSource;
 import java.io.IOException;
 import java.util.*;
 
-public final class Translator {
+public final class Translator implements TranslationSource {
 
     private final Locale locale;
 
@@ -50,6 +50,13 @@ public final class Translator {
 
     public String translate(String key, String defaultValue) {
         return translations.getOrDefault(key, defaultValue);
+    }
+
+    @Override
+    public void load(Locale locale, Map<String, String> translations) throws IOException {
+        if (getLocale().equals(locale)) {
+            translations.forEach(translations::putIfAbsent);
+        }
     }
 
     public static final class Builder {
