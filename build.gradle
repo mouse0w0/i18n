@@ -1,16 +1,6 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.novoda:bintray-release:0.9.2'
-    }
-}
-
-apply plugin: 'java'
-apply plugin: 'maven'
+apply plugin: 'java-library'
 apply plugin: 'maven-publish'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'signing'
 
 group 'com.github.mouse0w0'
 version '1.2.0'
@@ -31,8 +21,48 @@ test {
     useJUnitPlatform()
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom {
+                name = "I18n"
+                description = "An i18n library for Java application."
+                url = "https://github.com/mouse0w0/i18n"
+                licenses {
+                    license {
+                        name = "BSD 3-Clause License"
+                        url = "https://opensource.org/licenses/BSD-3-Clause"
+                    }
+                }
+                developers {
+                    developer {
+                        name = "Mouse"
+                        email = "mouse0w0@qq.com"
+                    }
+                }
+                scm {
+                    url = "https://github.com/mouse0w0/i18n.git"
+                }
+            }
+        }
+    }
     repositories {
+        maven {
+            name = "OSSRH"
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username = project.findProperty("ossUsername") ?: System.getenv("USERNAME")
+                password = project.findProperty("ossPassword") ?: System.getenv("PASSWORD")
+            }
+        }
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/mouse0w0/i18n")
@@ -44,11 +74,6 @@ publishing {
     }
 }
 
-publish {
-    userOrg = 'mouse0w0'
-    groupId = project.group
-    artifactId = 'i18n'
-    publishVersion = project.version
-    desc = 'A internationalization library for Java application'
-    website = 'https://github.com/mouse0w0/i18n'
+signing {
+    sign publishing.publications.maven
 }
