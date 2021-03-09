@@ -7,33 +7,39 @@ import java.util.*;
 
 public final class Translator implements TranslationSource {
 
-    private final Locale locale;
+    private Locale locale;
 
+    private final TranslationSource[] sources;
     private final Map<String, String> translations = new HashMap<>();
-
     private final ResourceBundle resourceBundle;
 
     public static Builder builder() {
         return new Builder();
     }
 
-    private Translator(Locale locale, List<TranslationSource> sources) {
-        if (locale == null) throw new NullPointerException("locale");
-        this.locale = locale;
-
-        sources.forEach(source -> {
-            try {
-                source.load(locale, translations);
-            } catch (IOException e) {
-                throw new TranslationLoadException("Failed to load translation", e);
-            }
-        });
-
+    private Translator(Locale locale, TranslationSource[] sources) throws TranslationLoadException {
+        if (sources == null) throw new NullPointerException("sources");
+        this.sources = sources;
         this.resourceBundle = new TranslatorResourceBundle(this);
+
+        setLocale(locale);
     }
 
     public Locale getLocale() {
         return locale;
+    }
+
+    public void setLocale(Locale locale) throws TranslationLoadException {
+        if (locale == null) throw new NullPointerException("locale");
+        this.locale = locale;
+
+        for (TranslationSource source : sources) {
+            try {
+                source.load(locale, translations);
+            } catch (IOException e) {
+                throw new TranslationLoadException("Failed to load translation. Source: " + source, e);
+            }
+        }
     }
 
     public Set<String> getKeys() {
@@ -54,15 +60,15 @@ public final class Translator implements TranslationSource {
 
     @Override
     public void load(Locale locale, Map<String, String> translations) throws IOException {
-        if (getLocale().equals(locale)) {
-            translations.forEach(translations::putIfAbsent);
+        for (TranslationSource source : sources) {
+            source.load(locale, translations);
         }
     }
 
     public static final class Builder {
-        private Locale locale;
+        private Locale locale = Locale.getDefault();
 
-        private List<TranslationSource> sources = new ArrayList<>();
+        private final List<TranslationSource> sources = new ArrayList<>();
 
         public Builder locale(Locale locale) {
             this.locale = locale;
@@ -74,8 +80,8 @@ public final class Translator implements TranslationSource {
             return this;
         }
 
-        public Translator build() {
-            return new Translator(locale, sources);
+        public Translator build() throws TranslationLoadException {
+            return new Translator(locale, sources.toArray(EMPTY_ARRAY));
         }
     }
 }
