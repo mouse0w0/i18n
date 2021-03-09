@@ -12,7 +12,7 @@ Add the dependency
 <dependency>
     <groupId>com.github.mouse0w0</groupId>
     <artifactId>i18n</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 ### Gradle
@@ -30,6 +30,6 @@ Step 2. Add the dependency
 
 ```gradle
 	dependencies {
-	        implementation 'com.github.mouse0w0:i18n:1.2.0'
+	        implementation 'com.github.mouse0w0:i18n:1.3.0'
 	}
 ```
