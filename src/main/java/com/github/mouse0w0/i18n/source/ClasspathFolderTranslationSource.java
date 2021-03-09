@@ -68,4 +68,14 @@ public class ClasspathFolderTranslationSource implements TranslationSource {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "ClasspathFolderTranslationSource{" +
+                "classLoader=" + classLoader +
+                ", path='" + path + '\'' +
+                ", extensionName='" + extensionName + '\'' +
+                ", charset=" + charset +
+                '}';
+    }
 }

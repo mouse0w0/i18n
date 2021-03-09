@@ -50,4 +50,13 @@ public class FolderTranslationSource implements TranslationSource {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "FolderTranslationSource{" +
+                "path=" + path +
+                ", extensionName='" + extensionName + '\'' +
+                ", charset=" + charset +
+                '}';
+    }
 }

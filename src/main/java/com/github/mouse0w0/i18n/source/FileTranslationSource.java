@@ -48,4 +48,14 @@ public class FileTranslationSource implements TranslationSource {
             properties.forEach((key, value) -> translations.putIfAbsent(key.toString(), value.toString()));
         }
     }
+
+    @Override
+    public String toString() {
+        return "FileTranslationSource{" +
+                "path=" + path +
+                ", prefix='" + prefix + '\'' +
+                ", suffix='" + suffix + '\'' +
+                ", charset=" + charset +
+                '}';
+    }
 }
