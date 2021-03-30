@@ -60,8 +60,12 @@ public final class Translator implements TranslationSource {
 
     @Override
     public void load(Locale locale, Map<String, String> translations) throws IOException {
-        for (TranslationSource source : sources) {
-            source.load(locale, translations);
+        if (this.locale.equals(locale)) {
+            translations.putAll(this.translations);
+        } else {
+            for (TranslationSource source : sources) {
+                source.load(locale, translations);
+            }
         }
     }
 
