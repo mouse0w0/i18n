@@ -1,5 +1,5 @@
 # i18n
-[![](https://img.shields.io/github/v/release/mouse0w0/i18n)](https://github.com/Mouse0w0/i18n/releases)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.mouse0w0/i18n.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.mouse0w0%22%20AND%20a:%22i18n%22)
 
 An i18n library for Java application.
 
